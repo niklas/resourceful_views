@@ -243,10 +243,10 @@ class ResourcefulViews
         if block_given?
           opts[:method] = :get
           args_for_fields_for = ['#{resource.singular}']
-          concat(form_tag(new_#{resource.name_prefix}#{resource.singular}_path(*args), opts), block.binding)
-          concat(parameters.collect{|key, value| hidden_field_tag(key.to_s, value, :id => nil)}.join, block.binding) unless parameters.empty?
+          concat(form_tag(new_#{resource.name_prefix}#{resource.singular}_path(*args), opts))
+          concat(parameters.collect{|key, value| hidden_field_tag(key.to_s, value, :id => nil)}.join) unless parameters.empty?
           fields_for(*args_for_fields_for, &block)
-          concat('</form>', block.binding)
+          concat('</form>')
         else
           label = opts.delete(:label) || 'New'
           args << parameters unless parameters.empty?
